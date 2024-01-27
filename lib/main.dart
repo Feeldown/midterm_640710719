@@ -45,9 +45,18 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Calculator'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.calculate),  // เพิ่มไอคอนเครื่องคิดเลข
+            SizedBox(width: 8.0),
+            Text('MY CALCULATOR'),
+          ],
+        ),
         centerTitle: true,
+        
       ),
+
       body: Column(
         children: [
           Expanded(
@@ -66,8 +75,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
           ),
           Row(
             children: [
-              buildButton('C', Colors.grey),
-              buildButton('DEL', Colors.grey),             
+              buildButton('C', Color.fromARGB(255, 199, 200, 201)),
+              buildButton('⌫', Color.fromARGB(255, 199, 200, 201)),             
             ],
           ),
           Row(
@@ -75,7 +84,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               buildButton('7', buttonColor),
               buildButton('8', buttonColor),
               buildButton('9', buttonColor),
-              buildButton('/', Colors.grey),
+              buildButton('÷', Color.fromARGB(255, 199, 200, 201)),
             ],
           ),
           Row(
@@ -83,7 +92,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               buildButton('4', buttonColor),
               buildButton('5', buttonColor),
               buildButton('6', buttonColor),
-              buildButton('x', Colors.grey),
+              buildButton('x', Color.fromARGB(255, 199, 200, 201)),
             ],
           ),
           Row(
@@ -91,19 +100,19 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               buildButton('1', buttonColor),
               buildButton('2', buttonColor),
               buildButton('3', buttonColor),
-              buildButton('-', Colors.grey),
+              buildButton('-', Color.fromARGB(255, 199, 200, 201)),
             ],
           ),
           Row(
             children: [
               // ปรับ flex ของปุ่ม 0 เพื่อให้มีขนาดใหญ่ขึ้น
               buildButton('0', buttonColor, flex: 3),  
-              buildButton('+', Colors.grey),
+              buildButton('+', Color.fromARGB(255, 199, 200, 201)),
             ],
           ),
           Row(
             children: [
-              buildButton('=', buttonColor, flex: 4),  // ปรับ flex ของปุ่ม = เพื่อให้มีขนาดใหญ่ขึ้น
+              buildButton('=', Colors.blue, flex: 4),  // ปรับ flex ของปุ่ม = เพื่อให้มีขนาดใหญ่ขึ้น
             ],
           ),
         ],
@@ -118,10 +127,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         margin: EdgeInsets.all(3.0),
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(0.0),
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(20.0),
           child: ElevatedButton(
             onPressed: () => onButtonPressed(text),
             style: ElevatedButton.styleFrom(
@@ -134,7 +143,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             child: Text(
               text,
               style: TextStyle(
-                fontSize: 24.0,
+                fontSize: 30.0,
                 color: Colors.black,
               ),
             ),
@@ -149,7 +158,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     setState(() {
       if (buttonText == 'C' || buttonText == '=') {
         displayText = '0';
-      } else if (buttonText == 'DEL') {
+      } else if (buttonText == '⌫') {
         if (displayText.length > 1) {
           displayText = displayText.substring(0, displayText.length - 1);
         } else {
