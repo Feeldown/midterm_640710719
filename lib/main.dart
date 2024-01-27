@@ -23,6 +23,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   String displayText = '0';
   Color buttonColor = Colors.green;  // สีเริ่มต้น
 
+  
+
   @override
   void initState() {
     super.initState();
